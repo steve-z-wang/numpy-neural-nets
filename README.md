@@ -1,3 +1,3 @@
 # numpy-neural-net
 
-Deep neural network from scarch based on numpy
+Play around with deep neural network based on numpy
