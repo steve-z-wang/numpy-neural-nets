@@ -1,6 +1,6 @@
 import numpy as np
 
-def initialize_parameters_deep(layer_dimension):
+def initialize_parameters(layer_dimension):
     parameters = {}
 
     L = len(layer_dimension)

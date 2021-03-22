@@ -1,7 +1,7 @@
+import pickle 
 import numpy as np
 import matplotlib.pyplot as plt
 
-from initialization import initialize_parameters_deep
 from forward_propagation import n_model_forward
 from backward_propagation import n_model_backward
 
@@ -28,12 +28,9 @@ def update_parameters(parameters, grads, learning_rate):
 
     return parameters
 
-def n_layer_model(X, Y, layers_dims, learning_rate = 0.0075, num_iterations = 3000, print_cost=False):#lr was 0.009
+def train(X, Y, parameters, learning_rate = 0.0075, num_iterations = 3000, print_cost=False):#lr was 0.009
     # keep track of cost
     costs = []
-    
-    # Parameters initialization.
-    parameters = initialize_parameters_deep(layers_dims)
 
     # Loop (gradient descent)
     for i in range(0, num_iterations):
@@ -50,12 +47,16 @@ def n_layer_model(X, Y, layers_dims, learning_rate = 0.0075, num_iterations = 30
         # Update parameters.
         parameters = update_parameters(parameters, grads, learning_rate)
                 
-        # Print the cost every 100 training example
-        if print_cost and i % 100 == 0:
+        # Every 100 iterations: 
+        if print_cost and i % 10 == 0:
+
+            # print cost value 
             print ("Cost after iteration %i: %f" %(i, cost))
-        if print_cost and i % 100 == 0:
             costs.append(cost)
-            
+
+            # save parameters
+            pickle.dump(parameters, open('parameters.pkl', 'wb'))            
+
     # plot the cost
     plt.plot(np.squeeze(costs))
     plt.ylabel('cost')
