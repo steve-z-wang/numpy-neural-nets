@@ -1,3 +1,3 @@
 # numpy-neural-nets
 
-Simple neural nets based on numpy
+Simple Neural Nets from Scratch
